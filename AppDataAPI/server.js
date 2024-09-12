@@ -17,7 +17,7 @@ let text = '-blank-'
 
 app.patch("/patch", (req, res) => {
     text = req.body.text;
-    res.send(`the text is now: ${text}`);  // Responds to GET requests to /patch
+    res.send(`the text is now: ${text}`);
 });
 
 app.listen(PORT, () => {
