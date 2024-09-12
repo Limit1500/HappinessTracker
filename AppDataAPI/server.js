@@ -1,12 +1,25 @@
 import express from "express";
 
 const app = express();
-const PORT = 3000;
+const PORT = 4200;
 
-app.get('/', (req, res) => {
-    res.status(200).send("Server has recived your reqest!");
+app.use(express.json());
+
+app.get("/home", (req, res) => {
+    res.send("You are in the home page <br></br> You can make a post request at /post <br></br> Or you can make a patch request at /patch");
 })
 
+app.post('/post', (req, res) => {
+    res.json(req.body);
+})
+
+let text = '-blank-'
+
+app.patch("/patch", (req, res) => {
+    text = req.body.text;
+    res.send(`the text is now: ${text}`);
+});
+
 app.listen(PORT, () => {
-    console.log("serverul este on...");
+    console.log(`Listening on http://localhost:${PORT}/home`);
 })
