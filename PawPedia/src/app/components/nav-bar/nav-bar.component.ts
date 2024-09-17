@@ -10,5 +10,6 @@ import { Component } from '@angular/core';
 export class NavBarComponent {
   toggleBurgerMenu() {
     document.querySelector('.burger-menu-button')?.classList.toggle('open');
+    document.querySelector('.dropdown-menu')?.classList.toggle('open');
   }
 }

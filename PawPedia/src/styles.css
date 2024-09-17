@@ -12,7 +12,7 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   color: #333;
-  background-color: #e6f3fc;
+  background-color: #dceefc;
   font-weight: 400;
   min-height: 100vh;
 }
@@ -41,7 +41,8 @@ p {
 }
 
 a {
-  color: #007BFF;
+  color: black;
+  font-weight: bold;
   text-decoration: none;
 }
 
