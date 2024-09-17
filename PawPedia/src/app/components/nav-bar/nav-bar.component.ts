@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-
+  toggleBurgerMenu() {
+    document.querySelector('.burger-menu-button')?.classList.toggle('open');
+  }
 }
