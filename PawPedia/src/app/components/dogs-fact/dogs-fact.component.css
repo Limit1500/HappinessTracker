@@ -1,13 +1,13 @@
 :host {
-    background-color: white;
-    width: 100%;
-    max-width: 500px;
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    padding: 2rem;
-    background-image: url("/PawPedia/src/assets/images/background_1.jpg");
+  background-color: white;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  background-image: url("https://github.com/Limit1500/PawPedia/blob/master/PawPedia/src/assets/images/background_1.jpg");
 }
 
 button {
-    background-image: url('/PawPedia/src/assets/images/favorite_uncheck_icon.png');
+  background-image: url("https://github.com/Limit1500/PawPedia/blob/master/PawPedia/src/assets/images/background_1.jpg");
 }

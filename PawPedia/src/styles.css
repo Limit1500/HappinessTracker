@@ -16,14 +16,19 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: var(--dark-color);
   background-color: var(--main-background-color);
   font-weight: 400;
   min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   margin-bottom: 0.5em;
   line-height: 1.2;
@@ -62,8 +67,9 @@ a:hover {
   padding: 0 1rem;
 }
 
-button, .btn {
-  background-color: #007BFF;
+button,
+.btn {
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -73,16 +79,20 @@ button, .btn {
   transition: background-color 0.3s ease;
 }
 
-button:hover, .btn:hover {
+button:hover,
+.btn:hover {
   background-color: #0056b3;
 }
 
-button:disabled, .btn:disabled {
+button:disabled,
+.btn:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
@@ -91,9 +101,11 @@ input, textarea, select {
   margin-bottom: 1.5rem;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
-  border-color: #007BFF;
+  border-color: #007bff;
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }
 
@@ -103,15 +115,31 @@ img {
   display: block;
 }
 
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
 
-.pt-1 { padding-top: 1rem; }
-.pt-2 { padding-top: 2rem; }
-.pb-1 { padding-bottom: 1rem; }
-.pb-2 { padding-bottom: 2rem; }
+.pt-1 {
+  padding-top: 1rem;
+}
+.pt-2 {
+  padding-top: 2rem;
+}
+.pb-1 {
+  padding-bottom: 1rem;
+}
+.pb-2 {
+  padding-bottom: 2rem;
+}
 
 .flex {
   display: flex;
@@ -134,10 +162,18 @@ img {
   flex-wrap: wrap;
 }
 
-.z-0 { z-index: 0; }
-.z-10 { z-index: 10; }
-.z-100 { z-index: 100; }
-.z-1000 { z-index: 1000; }
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-100 {
+  z-index: 100;
+}
+.z-1000 {
+  z-index: 1000;
+}
 
 html {
   scroll-behavior: smooth;
