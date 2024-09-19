@@ -1,16 +1,13 @@
 :host {
+    background-color: white;
     width: 100%;
     max-width: 500px;
-    background-color: white;
+    border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-self: center;
-    border-radius: 20px;
+    background-image: url("/PawPedia/src/assets/images/background_1.jpg");
 }
 
-div {
-    padding-left: 2rem;
+button {
+    background-image: url('/PawPedia/src/assets/images/favorite_uncheck_icon.png');
 }

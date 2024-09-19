@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-background-color: #f4f1de;
+  --secundary-background-color: #e28d76;
+  --dark-color: #3d405b;
+}
+
 html {
   font-size: 16px;
   line-height: 1.5;
@@ -11,8 +17,8 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: #333;
-  background-color: #dceefc;
+  color: var(--dark-color);
+  background-color: var(--main-background-color);
   font-weight: 400;
   min-height: 100vh;
 }
@@ -41,7 +47,7 @@ p {
 }
 
 a {
-  color: black;
+  color: white;
   font-weight: bold;
   text-decoration: none;
 }
