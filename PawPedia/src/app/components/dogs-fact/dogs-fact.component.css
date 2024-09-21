@@ -1,13 +1,20 @@
 :host {
-  background-color: white;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
+  height: 300px;
   border-radius: 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   padding: 2rem;
-  background-image: url("https://github.com/Limit1500/PawPedia/blob/master/PawPedia/src/assets/images/background_1.jpg");
+  background-color: var(--secundary-background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 2rem;
+  border-right: 5px solid var(--effect-color);
 }
 
-button {
-  background-image: url("https://github.com/Limit1500/PawPedia/blob/master/PawPedia/src/assets/images/background_1.jpg");
+img {
+  width: 30px;
+  height: 30px;
+  align-self: flex-start;
 }

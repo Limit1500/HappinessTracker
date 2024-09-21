@@ -1,0 +1,60 @@
+<div class="header-div">
+  <div>
+    <h1>PawPedia</h1>
+    <p>
+      Unleash Your Passion for Paws: Discover the Perfect Dog Breed for You!
+    </p>
+  </div>
+
+  <button>Sign In now</button>
+
+  <h3 class="mt-5 pt-2">Here you can</h3>
+  <div class="flex flex-wrap flex-center gap-2">
+    <app-text-box
+      [title]="'Find breeds'"
+      [text]="
+        'Explore a variety of dog breeds and discover the perfect companion for your lifestyle.'
+      "
+    ></app-text-box>
+    <app-text-box
+      [title]="'Discover facts'"
+      [text]="
+        'Learn interesting facts about different breeds, including their history and unique traits.'
+      "
+    ></app-text-box>
+    <app-text-box
+      [title]="'Add your preferences'"
+      [text]="
+        'Tell us what traits matter most, and we’ll help you find your ideal breed.'
+      "
+    ></app-text-box>
+  </div>
+</div>
+
+<div class="breeds-div flex gap-2 flex-column flex-center">
+  <h1>Breeds paradise</h1>
+  <div class="flex flex-column flex-center gap-2 flex-wrap">
+    <div class="flex gap-2 flex-wrap flex-center">
+      <app-breed-container></app-breed-container>
+      <app-breed-container></app-breed-container>
+    </div>
+    <div class="flex gap-2 flex-wrap flex-center">
+      <app-breed-container></app-breed-container>
+      <app-breed-container></app-breed-container>
+    </div>
+  </div>
+  <button id="discover-more">Discover more →</button>
+</div>
+
+<div class="facts-wrapper flex flex-center flex-column gap-5">
+  <h1 class="mt-10">Do you know that..</h1>
+  <div class="flex flex-center gap-1 flex-wrap">
+    <app-dogs-fact></app-dogs-fact>
+    <app-dogs-fact></app-dogs-fact>
+  </div>
+  <div class="flex flex-center gap-1 flex-wrap">
+    <app-dogs-fact></app-dogs-fact>
+    <app-dogs-fact></app-dogs-fact>
+  </div>
+  <button id="discover-more">Discover more →</button>
+</div>
