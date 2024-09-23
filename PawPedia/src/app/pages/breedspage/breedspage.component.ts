@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { BreedContainerComponent } from '../../components/breed-container/breed-container.component';
 
 @Component({
   selector: 'app-breedspage',
   standalone: true,
-  imports: [],
+  imports: [BreedContainerComponent],
   templateUrl: './breedspage.component.html',
-  styleUrl: './breedspage.component.css'
+  styleUrl: './breedspage.component.css',
 })
-export class BreedspageComponent {
-
-}
+export class BreedspageComponent {}

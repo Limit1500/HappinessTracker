@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div {
+  padding: 2rem;
+  flex: 1 1 calc(30%);
+  max-width: 1700px;
+}
+
+h2 {
+  width: 50%;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
