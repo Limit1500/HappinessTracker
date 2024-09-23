@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TextBoxComponent } from '../../components/text-box/text-box.component';
 import { BreedContainerComponent } from '../../components/breed-container/breed-container.component';
 import { DogsFactComponent } from '../../components/dogs-fact/dogs-fact.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-homepage',

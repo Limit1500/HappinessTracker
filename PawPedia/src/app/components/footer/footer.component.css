@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  padding: 2rem;
+  background-color: var(--effect-color);
+}
+
+a,
+address,
+p {
+  width: 150px;
+  color: white;
+  margin: 0;
+}
+
+div {
+  text-align: center;
+  margin: 0px;
+}
