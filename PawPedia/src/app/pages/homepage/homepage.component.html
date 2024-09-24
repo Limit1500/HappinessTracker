@@ -6,7 +6,9 @@
     </p>
   </div>
 
-  <button>Sign In now</button>
+  <button onclick="window.location.href='http://localhost:4200/signin'">
+    Sign In now
+  </button>
 
   <h3>Here you can</h3>
   <div class="flex flex-wrap flex-center gap-2 pb-2">
@@ -43,7 +45,12 @@
       <app-breed-container></app-breed-container>
     </div>
   </div>
-  <button id="discover-more">Discover more →</button>
+  <button
+    id="discover-more"
+    onclick="window.location.href='http://localhost:4200/breeds'"
+  >
+    Discover more →
+  </button>
 </div>
 
 <div class="facts-wrapper flex flex-center flex-column gap-2">
@@ -56,5 +63,11 @@
     <app-dogs-fact></app-dogs-fact>
     <app-dogs-fact></app-dogs-fact>
   </div>
-  <button id="discover-more" class="mb-10">Discover more →</button>
+  <button
+    id="discover-more"
+    onclick="window.location.href='http://localhost:4200/facts'"
+    class="mb-10"
+  >
+    Discover more →
+  </button>
 </div>

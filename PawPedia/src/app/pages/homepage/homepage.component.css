@@ -9,6 +9,7 @@
 .header-div {
   background-image: url("https://i.pinimg.com/originals/41/08/2f/41082f1404155931315ea4e775a9a479.jpg");
   width: 100%;
+  min-height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
   gap: 2rem;
