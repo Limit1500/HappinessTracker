@@ -31,7 +31,6 @@ h4,
 h5,
 h6 {
   font-weight: 600;
-  margin-bottom: 0.5em;
   line-height: 1.2;
   color: var(--text-color);
 }

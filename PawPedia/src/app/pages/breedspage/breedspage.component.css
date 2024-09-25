@@ -1,41 +1,40 @@
 :host {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.breeds-div {
+  gap: 1rem;
+  justify-content: space-evenly;
   padding: 2rem;
-  display: flex;
-  overflow-x: auto;
-  flex-wrap: nowrap;
-  width: 100%;
-  flex-shrink: 0;
 }
 
 h2 {
-  width: 50%;
   color: white;
   text-align: center;
-  padding: 2rem;
+  align-self: flex-start;
 }
 
-/* Scrollbar styles */
-.breeds-div::-webkit-scrollbar {
-  width: 12px;
-  height: 6px;
+.scroll-div {
+  display: flex;
+  overflow-x: auto;
+  width: auto;
+  gap: 2rem;
 }
 
-.breeds-div::-webkit-scrollbar-track {
-  background: #f1f1f1;
+app-breed-container,
+app-dogs-fact {
+  min-width: 400px;
+}
+
+.scroll-div::-webkit-scrollbar {
+  background-color: white;
+  border-radius: 10px;
+  height: 8px;
+}
+
+.scroll-div::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
   border-radius: 10px;
 }
 
-.breeds-div::-webkit-scrollbar-thumb {
-  background-color: rgb(74, 74, 74);
-}
-
-.breeds-div::-webkit-scrollbar-thumb:hover {
-  background-color: black;
+.scroll-div::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(71, 71, 71);
 }

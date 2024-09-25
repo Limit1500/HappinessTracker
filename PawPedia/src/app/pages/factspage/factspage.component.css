@@ -1,0 +1,14 @@
+.div {
+  display: flex;
+  max-height: 120px;
+  border: 1px solid black;
+  overflow-x: auto;
+}
+
+.div div {
+  min-width: 110px;
+  height: 110px;
+  line-height: 110px;
+  text-align: center;
+  background-color: aliceblue;
+}
