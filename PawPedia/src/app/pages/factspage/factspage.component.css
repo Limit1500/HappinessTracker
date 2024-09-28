@@ -1,14 +1,42 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #c4d7ff;
+}
+
+.parent-div {
+  padding: 2rem;
+  padding-right: 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+h2 {
+  color: black;
+}
+
 .div {
   display: flex;
-  max-height: 120px;
-  border: 1px solid black;
   overflow-x: auto;
+  gap: 1rem;
 }
 
 .div div {
-  min-width: 110px;
+  min-width: 200px;
   height: 110px;
   line-height: 110px;
   text-align: center;
-  background-color: aliceblue;
+  background-color: rgb(63, 62, 62);
+  border-radius: 10px;
+}
+
+.third div {
+  height: 400px;
+  line-height: 400px;
+}
+
+.div::-webkit-scrollbar {
+  height: 0px;
 }

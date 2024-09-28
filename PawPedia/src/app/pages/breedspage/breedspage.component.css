@@ -4,10 +4,10 @@
   gap: 1rem;
   justify-content: space-evenly;
   padding: 2rem;
+  background-color: rgb(230, 229, 229);
 }
 
 h2 {
-  color: white;
   text-align: center;
   align-self: flex-start;
 }
