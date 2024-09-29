@@ -1,0 +1,26 @@
+:host {
+  width: 100%;
+  background-color: var(--third-background-color);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: calc(100vh - 75px - 168px);
+}
+
+div {
+  width: 100%;
+  max-width: 600px;
+}
+
+img {
+  border-radius: 50%;
+}
+
+a {
+  margin-left: 1rem;
+  font-style: italic;
+  line-height: 1;
+}

@@ -1,40 +1,24 @@
 :host {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  justify-content: space-evenly;
   padding: 2rem;
-  background-color: rgb(230, 229, 229);
+  background-color: var(--third-background-color);
 }
 
-h2 {
-  text-align: center;
-  align-self: flex-start;
+app-breed-container {
+  min-width: 400px;
+  margin: 2rem 1rem;
 }
 
 .scroll-div {
-  display: flex;
   overflow-x: auto;
-  width: auto;
-  gap: 2rem;
-}
-
-app-breed-container,
-app-dogs-fact {
-  min-width: 400px;
+  display: flex;
 }
 
 .scroll-div::-webkit-scrollbar {
-  background-color: white;
-  border-radius: 10px;
-  height: 8px;
+  height: 0;
 }
 
-.scroll-div::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  border-radius: 10px;
-}
-
-.scroll-div::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(71, 71, 71);
+#breedType {
+  width: 200px;
 }

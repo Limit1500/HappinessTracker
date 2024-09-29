@@ -72,7 +72,7 @@ button {
 }
 
 .facts-wrapper {
-  background-color: white;
+  background-color: var(--third-background-color);
   width: 100%;
 }
 
