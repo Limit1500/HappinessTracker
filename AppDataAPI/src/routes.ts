@@ -1,4 +1,5 @@
-import { checkUserData, insertUser } from "./queries.js";
+import { error } from "console";
+import { checkUserData, findUser, insertUser } from "./queries.js";
 import { pool } from "./server.js";
 import { Router } from "express";
 
@@ -24,4 +25,22 @@ router.post("/signin", async (req, res) => {
   }
 
   res.status(200).send("You have been registered");
+});
+
+router.post("/login", async (req, res) => {
+  let username = req.body.username;
+  let password = req.body.password;
+  let email = "";
+  try {
+    email = await findUser(username, password);
+  } catch (error) {
+    res.status(400).send((error as Error).message);
+    return;
+  }
+
+  const response = {
+    message: "You are logged in",
+    email: email,
+  };
+  res.status(200).json(response);
 });

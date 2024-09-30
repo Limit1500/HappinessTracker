@@ -24,3 +24,11 @@ a {
   font-style: italic;
   line-height: 1;
 }
+
+p {
+  color: red;
+}
+
+#logout-button {
+  background-color: red;
+}

@@ -7,8 +7,13 @@ import { response } from 'express';
   providedIn: 'root',
 })
 export class UserService {
-  async signin(username: string, password: string, email: string) {
-    fetch('http://localhost:4000/signin', {
+  async signin(
+    username: string,
+    password: string,
+    email: string
+  ): Promise<string> {
+    let textResponse = '';
+    await fetch('http://localhost:4000/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,11 +24,34 @@ export class UserService {
         return response.text();
       })
       .then((text) => {
-        console.log(text);
+        textResponse = text;
       })
       .catch((error) => {
         console.log(error);
       });
+    return textResponse;
+  }
+
+  async login(username: string, password: string) {
+    let responseData: any = {};
+    await fetch('http://localhost:4000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        responseData = data;
+        console.log(responseData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return responseData;
   }
 
   constructor() {}
