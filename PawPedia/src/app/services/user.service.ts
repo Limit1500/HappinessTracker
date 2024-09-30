@@ -7,7 +7,7 @@ import { response } from 'express';
   providedIn: 'root',
 })
 export class UserService {
-  signin(username: string, password: string, email: string) {
+  async signin(username: string, password: string, email: string) {
     fetch('http://localhost:4000/signin', {
       method: 'POST',
       headers: {
@@ -16,10 +16,10 @@ export class UserService {
       body: JSON.stringify({ username, password, email }),
     })
       .then((response) => {
-        return response.json;
+        return response.text();
       })
-      .then((data) => {
-        console.log(data);
+      .then((text) => {
+        console.log(text);
       })
       .catch((error) => {
         console.log(error);

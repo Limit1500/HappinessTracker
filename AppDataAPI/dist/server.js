@@ -10,7 +10,7 @@ export const pool = new Pool({
     host: "localhost",
     database: "postgres",
     password: "D_QWERTY_T9",
-    port: 5432,
+    port: 6000,
 });
 server.use(express.json());
 server.use(cors());
