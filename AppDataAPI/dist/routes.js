@@ -36,6 +36,5 @@ router.post("/login", async (req, res) => {
         message: "You are logged in",
         email: email,
     };
-    console.log("Response to be sent:", response);
     res.status(200).json(response);
 });
