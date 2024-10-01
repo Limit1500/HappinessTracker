@@ -1,4 +1,14 @@
-import { pool } from "./server.js";
+import { pool } from "./database.js";
+export async function checkDatabaseConnection() {
+    try {
+        const res = await pool.query("SELECT NOW()");
+        console.log("Database connected");
+    }
+    catch (err) {
+        console.error("Database connection error:", err);
+        process.exit(1);
+    }
+}
 export async function checkUserData(username, email, password) {
     let result = await pool.query("SELECT * FROM users WHERE username = $1", [
         username,

@@ -1,6 +1,4 @@
-import { error } from "console";
 import { checkUserData, findUser, insertUser } from "./queries.js";
-import { pool } from "./server.js";
 import { Router } from "express";
 
 export let router = Router();
