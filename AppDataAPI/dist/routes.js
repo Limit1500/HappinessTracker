@@ -29,12 +29,11 @@ router.post("/login", async (req, res) => {
         email = await findUser(username, password);
     }
     catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).json({ message: error.message });
         return;
     }
-    const response = {
+    res.status(200).json({
         message: "You are logged in",
         email: email,
-    };
-    res.status(200).json(response);
+    });
 });

@@ -33,14 +33,12 @@ export class LoginpageComponent {
       this.username,
       this.password
     );
-    console.log(this.objectResponse);
     if (this.objectResponse.message === 'You are logged in') {
       const userData = {
         username: this.username,
         password: this.password,
         email: this.objectResponse.email,
       };
-      console.log(userData);
       localStorage.setItem('userData', JSON.stringify(userData));
       this.router.navigate(['/']);
       location.href = location.href;

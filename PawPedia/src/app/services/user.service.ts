@@ -46,7 +46,6 @@ export class UserService {
       })
       .then((data) => {
         responseData = data;
-        console.log(responseData);
       })
       .catch((error) => {
         console.log(error);
