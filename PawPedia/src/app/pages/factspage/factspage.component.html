@@ -1,21 +1,3 @@
-<div class="flex gap-2">
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact class="highlight"></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
-  <app-dogs-fact></app-dogs-fact>
+<div class="flex gap-2" *ngFor="let fact of facts">
+  <app-dogs-fact [text]="fact.text"></app-dogs-fact>
 </div>
