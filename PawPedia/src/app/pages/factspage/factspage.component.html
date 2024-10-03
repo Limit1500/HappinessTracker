@@ -1,3 +1,10 @@
-<div class="flex gap-2" *ngFor="let fact of facts">
-  <app-dogs-fact [text]="fact.text"></app-dogs-fact>
+<button (click)="previousFact()"><</button>
+<div>
+  <app-dogs-fact
+    *ngFor="let fact of facts; let i = index"
+    [id]="'fact-' + i"
+    [text]="fact.text"
+    [ngClass]="{ highlight: currentFactIndex === i }"
+  ></app-dogs-fact>
 </div>
+<button (click)="nextFact()">></button>

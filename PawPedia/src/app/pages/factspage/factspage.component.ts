@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
 })
 export class FactspageComponent {
   facts: { text: string }[] = [];
+  currentFactIndex = -1;
 
   async pushFacts() {
     this.facts = await this.factsService.pushFacts(this.facts);
@@ -20,6 +21,26 @@ export class FactspageComponent {
 
   ngOnInit() {
     this.pushFacts();
+    this.nextFact();
+  }
+
+  previousFact() {
+    document.querySelector('#fact-' + this.currentFactIndex);
+
+    if (this.currentFactIndex >= 1) {
+      this.currentFactIndex--;
+    }
+    console.log(this.currentFactIndex);
+  }
+
+  nextFact() {
+    document.querySelector('#fact-' + this.currentFactIndex);
+
+    if (this.currentFactIndex > this.facts.length - 3) {
+      this.pushFacts();
+    }
+    this.currentFactIndex++;
+    console.log(this.currentFactIndex);
   }
 
   constructor(private factsService: FactsService) {}
