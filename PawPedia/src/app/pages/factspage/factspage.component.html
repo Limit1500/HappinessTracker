@@ -1,10 +1,3 @@
 <button (click)="previousFact()"><</button>
-<div>
-  <app-dogs-fact
-    *ngFor="let fact of facts; let i = index"
-    [id]="'fact-' + i"
-    [text]="fact.text"
-    [ngClass]="{ highlight: currentFactIndex === i }"
-  ></app-dogs-fact>
-</div>
+<app-dogs-fact [text]="currentFact"></app-dogs-fact>
 <button (click)="nextFact()">></button>

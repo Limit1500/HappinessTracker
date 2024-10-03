@@ -5,7 +5,7 @@ import { error } from 'console';
   providedIn: 'root',
 })
 export class FactsService {
-  async pushFacts(factsArray: { text: string }[]) {
+  async pushFacts(factsArray: string[]) {
     await fetch('https://dogapi.dog/api/v2/facts?limit=5')
       .then((response) => {
         return response.json();
@@ -17,7 +17,7 @@ export class FactsService {
             type: string;
             attributes: { body: string };
           }) => {
-            factsArray.push({ text: fact.attributes.body });
+            factsArray.push(fact.attributes.body);
           }
         );
       })

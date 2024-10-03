@@ -3,49 +3,34 @@
   align-items: center;
   justify-content: center;
   height: calc(100vh - 75px - 168px);
-}
-
-div {
-  display: flex;
-  gap: 2rem;
-  max-height: calc(100vh - 75px - 168px);
-  align-items: center;
-  overflow-x: auto;
+  gap: 3rem;
 }
 
 app-dogs-fact {
   flex-shrink: 0;
   transition: all 0.3s ease, transform 0.3s ease;
-  margin: 4rem;
   min-height: auto;
 }
 
 .highlight {
   transform: scale(1.4);
 }
-
-@media (max-width: 1600px) {
-  div {
-    flex-direction: column;
-    overflow-y: auto;
-    min-width: 565px;
+@media (max-width: 650px) {
+  :host {
+    gap: 1rem;
   }
 
-  @media (max-width: 700px) {
-    app-dogs-fact {
-      margin-left: 0;
-      margin-right: 0;
-    }
+  app-dogs-fact {
+    max-width: 300px;
   }
 
-  @media (max-width: 570px) {
-    .highlight {
-      transform: scale(1);
+  @media (max-width: 450px) {
+    :host {
+      gap: 0.5rem;
     }
+
     app-dogs-fact {
-      transform: scale(0.8);
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      max-width: 200px;
     }
   }
 }

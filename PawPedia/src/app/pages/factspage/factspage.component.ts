@@ -3,6 +3,7 @@ import { BreedsService } from '../../services/breeds.service';
 import { FactsService } from '../../services/facts.service';
 import { DogsFactComponent } from './../../components/dogs-fact/dogs-fact.component';
 import { Component } from '@angular/core';
+import test from 'node:test';
 
 @Component({
   selector: 'app-factspage',
@@ -12,35 +13,38 @@ import { Component } from '@angular/core';
   styleUrl: './factspage.component.css',
 })
 export class FactspageComponent {
-  facts: { text: string }[] = [];
-  currentFactIndex = -1;
+  facts: string[] = [];
+  currentFactIndex = 0;
+  currentFact: string = 'undefined';
 
   async pushFacts() {
     this.facts = await this.factsService.pushFacts(this.facts);
   }
 
-  ngOnInit() {
-    this.pushFacts();
+  initializeFirstFact() {
+    this.currentFactIndex = 0; // Set index to 0 to display the first fact
+    this.currentFact = this.facts[this.currentFactIndex]; // Assign the first fact
+  }
+
+  async ngOnInit() {
+    await this.pushFacts();
+    this.initializeFirstFact();
     this.nextFact();
   }
 
   previousFact() {
-    document.querySelector('#fact-' + this.currentFactIndex);
-
     if (this.currentFactIndex >= 1) {
       this.currentFactIndex--;
     }
-    console.log(this.currentFactIndex);
+    this.currentFact = this.facts[this.currentFactIndex];
   }
 
   nextFact() {
-    document.querySelector('#fact-' + this.currentFactIndex);
-
     if (this.currentFactIndex > this.facts.length - 3) {
       this.pushFacts();
     }
     this.currentFactIndex++;
-    console.log(this.currentFactIndex);
+    this.currentFact = this.facts[this.currentFactIndex];
   }
 
   constructor(private factsService: FactsService) {}
