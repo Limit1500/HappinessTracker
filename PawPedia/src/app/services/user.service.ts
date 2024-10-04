@@ -7,29 +7,25 @@ import { response } from 'express';
   providedIn: 'root',
 })
 export class UserService {
-  async signin(
-    username: string,
-    password: string,
-    email: string
-  ): Promise<string> {
-    let textResponse = '';
-    await fetch('http://localhost:4000/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password, email }),
-    })
-      .then((response) => {
-        return response.text();
-      })
-      .then((text) => {
-        textResponse = text;
-      })
-      .catch((error) => {
-        console.log(error);
+  async signin(username: string, password: string, email: string) {
+    try {
+      const response = await fetch('http://localhost:4000/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password, email }),
       });
-    return textResponse;
+
+      if (!response.ok) {
+        let errorResponse = await response.json();
+        throw new Error(errorResponse.message);
+      }
+
+      return await response.json();
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
   }
 
   async login(username: string, password: string) {

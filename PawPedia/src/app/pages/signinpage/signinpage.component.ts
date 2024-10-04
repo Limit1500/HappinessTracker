@@ -1,3 +1,4 @@
+import { error } from 'console';
 import { router } from './../../../../../AppDataAPI/src/routes';
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
@@ -18,27 +19,34 @@ export class SigninpageComponent {
     email: '',
   };
 
-  textResponse: any = {};
+  errorMessage: string = '';
+
+  response: {} = {};
 
   async signin() {
-    this.textResponse = await this.userServices.signin(
-      this.userData.username,
-      this.userData.password,
-      this.userData.email
-    );
+    try {
+      this.response = await this.userServices.signin(
+        this.userData.username,
+        this.userData.password,
+        this.userData.email
+      );
 
-    if (this.textResponse === 'You have been registered') {
       localStorage.setItem('userData', JSON.stringify(this.userData));
       this.router.navigate(['/']);
       location.href = location.href;
+    } catch (error) {
+      console.log((error as Error).message);
+      this.errorMessage = (error as Error).message;
     }
   }
 
   reRoutePage() {
     if (typeof window !== 'undefined' && window.localStorage) {
+      console.log('localStorage works');
       const rawUserData = localStorage.getItem('userData');
       if (rawUserData) {
         this.router.navigate(['/login']);
+        console.log('userData works' + this.userData);
       } else {
         this.router.navigate(['/signin']);
       }
@@ -47,7 +55,6 @@ export class SigninpageComponent {
 
   ngOnInit() {
     this.reRoutePage();
-    this.textResponse = '';
   }
 
   constructor(private userServices: UserService, private router: Router) {}

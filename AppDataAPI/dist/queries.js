@@ -10,26 +10,46 @@ export async function checkDatabaseConnection() {
     }
 }
 export async function checkUserData(username, email, password) {
-    let result = await pool.query("SELECT * FROM users WHERE username = $1", [
-        username,
-    ]);
-    if (result.rowCount != 0) {
-        throw new Error("ERROR: ursername already used");
-        return;
+    try {
+        let result = await pool.query("SELECT * FROM users WHERE username = $1", [
+            username,
+        ]);
+        if (result.rowCount != 0) {
+            throw new Error("INPUT ERROR: ursername already used");
+        }
+        result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+        if (result.rowCount != 0) {
+            throw new Error("INPUT ERROR: email already used");
+        }
     }
-    result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-    if (result.rowCount != 0) {
-        throw new Error("ERROR: email already used");
-        return;
+    catch (error) {
+        throw error;
     }
 }
 export async function insertUser(username, email, password) {
-    await pool.query("INSERT INTO users ( username, email, password ) VALUES ( $1, $2, $3 )", [username, email, password]);
+    try {
+        await pool.query("INSERT INTO users ( username, email, password ) VALUES ( $1, $2, $3 )", [username, email, password]);
+        const response = await pool.query("SELECT * FROM users WHERE username = $1 AND email = $2 AND password = $3", [username, email, password]);
+        return {
+            username: response.rows[0].username,
+            password: response.rows[0].password,
+            email: response.rows[0].email,
+            id: response.rows[0].id,
+        };
+    }
+    catch (error) {
+        throw error;
+    }
 }
 export async function findUser(username, password) {
     const response = await pool.query("SELECT * FROM users WHERE username = $1 AND password = $2", [username, password]);
     if (response.rowCount === 1) {
-        return response.rows[0].email;
+        return {
+            username: response.rows[0].username,
+            password: response.rows[0].password,
+            email: response.rows[0].email,
+            id: response.rows[0].id,
+        };
     }
     else {
         throw new Error("ERROR: user not found");

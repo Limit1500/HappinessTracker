@@ -34,12 +34,8 @@ export class LoginpageComponent {
       this.password
     );
     if (this.objectResponse.message === 'You are logged in') {
-      const userData = {
-        username: this.username,
-        password: this.password,
-        email: this.objectResponse.email,
-      };
-      localStorage.setItem('userData', JSON.stringify(userData));
+      localStorage.setItem('userData', JSON.stringify(this.objectResponse));
+      console.log(this.objectResponse);
       this.router.navigate(['/']);
       location.href = location.href;
     }
