@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 2rem;
   background-color: var(--third-background-color);
+  min-height: calc(100vh - 243px);
 }
 
 app-breed-container {
