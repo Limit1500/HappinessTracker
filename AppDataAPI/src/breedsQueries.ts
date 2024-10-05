@@ -43,11 +43,21 @@ export async function addBreedRating(
 export async function searchNewBreeds(userId: number) {
   try {
     const likedBreedIds = (await searchLikedBreeds(userId)).map(
-      (breed) => breed.id
+      (breed) => breed.breed_id
     );
 
+    if (likedBreedIds.length === 0) {
+      const allBreeds = await pool.query("SELECT * FROM breeds");
+      return allBreeds.rows;
+    }
+
+    const placeholders = likedBreedIds
+      .map((_, index) => `$${index + 1}`)
+      .join(",");
+
     const unlikedBreeds = await pool.query(
-      "SELECT * FROM breeds WHERE id NOT IN (${breedIds.join(',')})"
+      `SELECT * FROM breeds WHERE id NOT IN (${placeholders})`,
+      likedBreedIds
     );
     return unlikedBreeds.rows;
   } catch (error) {

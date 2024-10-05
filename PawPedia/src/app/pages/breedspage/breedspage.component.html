@@ -1,27 +1,24 @@
 <br />
 
-<h2>Popular</h2>
+<h2>Discover</h2>
 <div class="scroll-div flex">
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
+  <app-breed-container
+    *ngFor="let breed of unratedBreeds"
+    [title]="breed.name"
+    [description]="breed.description"
+  ></app-breed-container>
 </div>
 
 <br />
 
 <div class="flex gap-1">
   <h2>Filter</h2>
-  <select id="breedType" name="breedType">
-    <option value="" disabled selected>Select a breed type</option>
+  <select
+    id="breedType"
+    name="breedType"
+    [(ngModel)]="breedType"
+    (change)="this.searchBreedType(this.breedType)"
+  >
     <option value="herding">Herding</option>
     <option value="working">Working</option>
     <option value="sporting">Sporting</option>
@@ -33,18 +30,11 @@
 </div>
 
 <div class="scroll-div">
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
+  <app-breed-container
+    *ngFor="let breed of typeSelectedBreeds"
+    [title]="breed.name"
+    [description]="breed.description"
+  ></app-breed-container>
 </div>
 
 <br />
@@ -52,16 +42,9 @@
 <h2>Most liked</h2>
 
 <div class="scroll-div">
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
-  <app-breed-container></app-breed-container>
+  <app-breed-container
+    *ngFor="let breed of likedBreeds"
+    [title]="breed.name"
+    [description]="breed.description"
+  ></app-breed-container>
 </div>
