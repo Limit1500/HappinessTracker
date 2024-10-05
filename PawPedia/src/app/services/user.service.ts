@@ -29,25 +29,23 @@ export class UserService {
   }
 
   async login(username: string, password: string) {
-    let responseData: any = {};
-    await fetch('http://localhost:4000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        responseData = data;
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const rawResponseData = await fetch('http://localhost:4000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
       });
-    return responseData;
-  }
 
-  constructor() {}
+      if (!rawResponseData.ok) {
+        const responseData = await rawResponseData.json();
+        throw new Error(responseData.message);
+      }
+
+      return await rawResponseData.json();
+    } catch (error) {
+      return error;
+    }
+  }
 }

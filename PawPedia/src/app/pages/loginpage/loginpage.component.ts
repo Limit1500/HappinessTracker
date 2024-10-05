@@ -1,9 +1,14 @@
+import { LoadingService } from './../../services/loading.service';
+import { response } from 'express';
+import { join } from 'node:path';
+import { ok } from 'assert';
 import { router } from './../../../../../AppDataAPI/src/routes';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingBarComponent } from '../../components/loading-bar/loading-bar.component';
 
 @Component({
   selector: 'app-loginpage',
@@ -13,7 +18,7 @@ import { Router } from '@angular/router';
   styleUrl: './loginpage.component.css',
 })
 export class LoginpageComponent {
-  objectResponse: any = {};
+  textResponse: string = '';
   showLogin: boolean = true;
 
   username: string = '';
@@ -29,16 +34,23 @@ export class LoginpageComponent {
   }
 
   async logIn() {
-    this.objectResponse = await this.userServices.login(
-      this.username,
-      this.password
-    );
-    if (this.objectResponse.message === 'You are logged in') {
-      localStorage.setItem('userData', JSON.stringify(this.objectResponse));
-      console.log(this.objectResponse);
-      this.router.navigate(['/']);
+    this.LoadingService.setLoading(true);
+    try {
+      const response = await this.UserServices.login(
+        this.username,
+        this.password
+      );
+
+      localStorage.setItem('userData', JSON.stringify(response));
+
+      console.log(response);
+
       location.href = location.href;
+    } catch (error) {
+      console.log(error);
+      this.textResponse = (error as Error).message;
     }
+    this.LoadingService.setLoading(false);
   }
 
   logOut() {
@@ -51,5 +63,9 @@ export class LoginpageComponent {
     this.checkLogIn();
   }
 
-  constructor(private userServices: UserService, private router: Router) {}
+  constructor(
+    private UserServices: UserService,
+    private router: Router,
+    private LoadingService: LoadingService
+  ) {}
 }

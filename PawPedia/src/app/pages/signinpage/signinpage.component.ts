@@ -1,9 +1,12 @@
+import { response } from 'express';
 import { error } from 'console';
 import { router } from './../../../../../AppDataAPI/src/routes';
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingBarComponent } from '../../components/loading-bar/loading-bar.component';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-signinpage',
@@ -21,32 +24,28 @@ export class SigninpageComponent {
 
   errorMessage: string = '';
 
-  response: {} = {};
-
   async signin() {
+    this.LoadingService.setLoading(true);
     try {
-      this.response = await this.userServices.signin(
+      const response = await this.UserService.signin(
         this.userData.username,
         this.userData.password,
         this.userData.email
       );
-
-      localStorage.setItem('userData', JSON.stringify(this.userData));
+      localStorage.setItem('userData', JSON.stringify(response));
       this.router.navigate(['/']);
       location.href = location.href;
     } catch (error) {
-      console.log((error as Error).message);
       this.errorMessage = (error as Error).message;
     }
+    this.LoadingService.setLoading(false);
   }
 
   reRoutePage() {
     if (typeof window !== 'undefined' && window.localStorage) {
-      console.log('localStorage works');
       const rawUserData = localStorage.getItem('userData');
       if (rawUserData) {
         this.router.navigate(['/login']);
-        console.log('userData works' + this.userData);
       } else {
         this.router.navigate(['/signin']);
       }
@@ -57,5 +56,9 @@ export class SigninpageComponent {
     this.reRoutePage();
   }
 
-  constructor(private userServices: UserService, private router: Router) {}
+  constructor(
+    private UserService: UserService,
+    private router: Router,
+    private LoadingService: LoadingService
+  ) {}
 }

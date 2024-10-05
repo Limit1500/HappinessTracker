@@ -1,9 +1,9 @@
+import { LoadingService } from './../../services/loading.service';
 import { CommonModule } from '@angular/common';
 import { BreedsService } from '../../services/breeds.service';
 import { FactsService } from '../../services/facts.service';
 import { DogsFactComponent } from './../../components/dogs-fact/dogs-fact.component';
 import { Component } from '@angular/core';
-import test from 'node:test';
 
 @Component({
   selector: 'app-factspage',
@@ -18,18 +18,22 @@ export class FactspageComponent {
   currentFact: string = 'undefined';
 
   async pushFacts() {
+    this.LoadingService.setLoading(true);
     this.facts = await this.factsService.pushFacts(this.facts);
+    this.LoadingService.setLoading(false);
   }
 
   initializeFirstFact() {
-    this.currentFactIndex = 0; // Set index to 0 to display the first fact
-    this.currentFact = this.facts[this.currentFactIndex]; // Assign the first fact
+    this.currentFactIndex = 0;
+    this.currentFact = this.facts[this.currentFactIndex];
   }
 
   async ngOnInit() {
+    this.LoadingService.setLoading(true);
     await this.pushFacts();
     this.initializeFirstFact();
     this.nextFact();
+    this.LoadingService.setLoading(false);
   }
 
   previousFact() {
@@ -47,5 +51,8 @@ export class FactspageComponent {
     this.currentFact = this.facts[this.currentFactIndex];
   }
 
-  constructor(private factsService: FactsService) {}
+  constructor(
+    private factsService: FactsService,
+    private LoadingService: LoadingService
+  ) {}
 }
