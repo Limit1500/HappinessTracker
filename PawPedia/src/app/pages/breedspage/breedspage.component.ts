@@ -39,18 +39,22 @@ export class BreedspageComponent {
   breedRating: 1 | 2 | 3 | 4 | 5 = 1;
   breedId: number = 0;
   userId: number = 0;
-  breedType: string = 'herding';
+  breedType: string = 'Herding';
 
   getUserData() {
-    const rawUserData = localStorage.getItem('userData');
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const rawUserData = localStorage.getItem('userData');
 
-    if (rawUserData) {
-      try {
-        const userData = JSON.parse(rawUserData);
-        this.userId = userData.id;
-      } catch (error) {
-        console.error('Error parsing JSON:', error);
+      if (rawUserData) {
+        try {
+          const userData = JSON.parse(rawUserData);
+          this.userId = userData.id;
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
       }
+    } else {
+      console.log('ERROR: local storage is not available');
     }
   }
 
@@ -64,12 +68,14 @@ export class BreedspageComponent {
   }
 
   async searchBreedType(breedType: string) {
+    this.LoadingService.setLoading(true);
     try {
       const response = await this.BreedsService.searchBreedType(this.breedType);
       this.typeSelectedBreeds = response;
     } catch (error) {
       console.log(error);
     }
+    this.LoadingService.setLoading(false);
   }
 
   async addBreedRating(
