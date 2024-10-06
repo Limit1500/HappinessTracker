@@ -16,7 +16,7 @@ export async function searchBreedType(breedType: string) {
 export async function searchLikedBreeds(userId: number) {
   try {
     const response = await pool.query(
-      "SELECT * FROM users_breeds WHERE user_id = $1",
+      "SELECT * FROM users_breeds JOIN breeds ON users_breeds.breed_id = breeds.id WHERE users_breeds.user_id = $1;",
       [userId]
     );
     return response.rows;

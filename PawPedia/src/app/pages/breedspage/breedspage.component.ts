@@ -78,22 +78,6 @@ export class BreedspageComponent {
     this.LoadingService.setLoading(false);
   }
 
-  async addBreedRating(
-    breedRating: 1 | 2 | 3 | 4 | 5,
-    breedId: number,
-    userId: number
-  ) {
-    try {
-      const response = await this.BreedsService.addBreedRating(
-        this.breedRating,
-        this.breedId,
-        this.userId
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async searchNewBreeds(userId: number) {
     try {
       const response = await this.BreedsService.searchNewBreeds(this.userId);
@@ -101,6 +85,7 @@ export class BreedspageComponent {
     } catch (error) {
       console.log(error);
     }
+    console.log(this.unratedBreeds);
   }
 
   ngOnInit() {

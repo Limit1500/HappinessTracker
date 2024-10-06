@@ -8,5 +8,15 @@
   <p>{{ description }}</p>
 </div>
 <div class="flex flex-column flex-space-between pt-1">
-  <button>Add rating</button>
+  <div class="flex flex-center">
+    <button id="first-button" (click)="addBreedRating(1, breedId, userId)">
+      ★
+    </button>
+    <button (click)="addBreedRating(2, breedId, userId)">★</button>
+    <button (click)="addBreedRating(3, breedId, userId)">★</button>
+    <button (click)="addBreedRating(4, breedId, userId)">★</button>
+    <button id="last-button" (click)="addBreedRating(5, breedId, userId)">
+      ★
+    </button>
+  </div>
 </div>
