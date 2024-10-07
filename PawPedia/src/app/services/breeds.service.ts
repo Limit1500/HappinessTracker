@@ -92,5 +92,25 @@ export class BreedsService {
     }
   }
 
+  async removeBreedRating(breedId: number, userId: number) {
+    try {
+      const response = await fetch('http://localhost:4000/removeBreedRating', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ breedId, userId }),
+      });
+
+      if (!response.ok) {
+        throw new Error('ERROR: cant remove breed rating');
+      }
+
+      return await response.json();
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
+  }
+
   constructor(private LoadingService: LoadingService) {}
 }

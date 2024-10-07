@@ -37,12 +37,36 @@
   <h1>Breeds paradise</h1>
   <div class="flex flex-column flex-center gap-2 flex-wrap">
     <div class="flex gap-2 flex-wrap flex-center">
-      <app-breed-container></app-breed-container>
-      <app-breed-container></app-breed-container>
+      <app-breed-container
+        [onHomepage]="true"
+        [title]="'Beagle'"
+        [description]="
+          'Friendly and curious, known for their keen sense of smell.'
+        "
+      ></app-breed-container>
+      <app-breed-container
+        [onHomepage]="true"
+        [title]="'Cocker Spaniel'"
+        [description]="
+          'Affectionate and gentle, known for their long ears and friendly disposition.'
+        "
+      ></app-breed-container>
     </div>
     <div class="flex gap-2 flex-wrap flex-center">
-      <app-breed-container></app-breed-container>
-      <app-breed-container></app-breed-container>
+      <app-breed-container
+        [onHomepage]="true"
+        [title]="'Golden Retriever'"
+        [description]="
+          'Intelligent and friendly, Goldens are great family pets.'
+        "
+      ></app-breed-container>
+      <app-breed-container
+        [onHomepage]="true"
+        [title]="'Bulldog'"
+        [description]="
+          'Docile and willful, known for their loose, wrinkled skin.'
+        "
+      ></app-breed-container>
     </div>
   </div>
   <button
@@ -56,12 +80,20 @@
 <div class="facts-wrapper flex flex-center flex-column gap-2">
   <h1 class="mt-10">Do you know that..</h1>
   <div class="flex flex-center gap-2 flex-wrap">
-    <app-dogs-fact></app-dogs-fact>
-    <app-dogs-fact></app-dogs-fact>
+    <app-dogs-fact
+      [text]="'Female dogs carry puppies for about nine weeks before birth.'"
+    ></app-dogs-fact>
+    <app-dogs-fact
+      [text]="'Dogs curl up to keep themselves warm and protect vital organs.'"
+    ></app-dogs-fact>
   </div>
   <div class="flex flex-center gap-2 flex-wrap">
-    <app-dogs-fact></app-dogs-fact>
-    <app-dogs-fact></app-dogs-fact>
+    <app-dogs-fact
+      [text]="'A dog’s pregnancy lasts for approximately 60 days.'"
+    ></app-dogs-fact>
+    <app-dogs-fact
+      [text]="'Dogs are omnivores -- they eat meat, grains and vegetables.'"
+    ></app-dogs-fact>
   </div>
   <button
     id="discover-more"

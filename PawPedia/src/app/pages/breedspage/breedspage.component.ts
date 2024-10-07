@@ -18,6 +18,7 @@ interface Breed {
   female_min_weight: number;
   female_max_weight: number;
   hypoallergenic: boolean;
+  rating: number;
 }
 @Component({
   selector: 'app-breedspage',
@@ -85,7 +86,6 @@ export class BreedspageComponent {
     } catch (error) {
       console.log(error);
     }
-    console.log(this.unratedBreeds);
   }
 
   ngOnInit() {

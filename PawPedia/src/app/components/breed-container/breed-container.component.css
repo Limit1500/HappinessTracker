@@ -35,3 +35,14 @@ button {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+
+#removeRating {
+  width: 150px;
+  align-self: center;
+  background-color: red;
+  border-radius: 5px;
+}
+
+p {
+  align-self: center;
+}

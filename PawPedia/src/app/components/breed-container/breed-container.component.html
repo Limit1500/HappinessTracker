@@ -7,16 +7,24 @@
   <h2>{{ title }}</h2>
   <p>{{ description }}</p>
 </div>
-<div class="flex flex-column flex-space-between pt-1">
-  <div class="flex flex-center">
-    <button id="first-button" (click)="addBreedRating(1, breedId, userId)">
-      ★
-    </button>
-    <button (click)="addBreedRating(2, breedId, userId)">★</button>
-    <button (click)="addBreedRating(3, breedId, userId)">★</button>
-    <button (click)="addBreedRating(4, breedId, userId)">★</button>
-    <button id="last-button" (click)="addBreedRating(5, breedId, userId)">
-      ★
-    </button>
+<div class="flex flex-column flex-space-between pt-1" *ngIf="!onHomepage">
+  <div class="flex flex-center" *ngIf="!isRated">
+    <button id="first-button" (click)="addBreedRating(1, id, userId)">★</button>
+    <button (click)="addBreedRating(2, id, userId)">★</button>
+    <button (click)="addBreedRating(3, id, userId)">★</button>
+    <button (click)="addBreedRating(4, id, userId)">★</button>
+    <button id="last-button" (click)="addBreedRating(5, id, userId)">★</button>
   </div>
+  <button
+    id="removeRating"
+    *ngIf="isRated"
+    (click)="removeBreedRating(id, userId)"
+  >
+    Remove rating
+  </button>
+  <p *ngIf="rating === 1">★</p>
+  <p *ngIf="rating === 2">★★</p>
+  <p *ngIf="rating === 3">★★★</p>
+  <p *ngIf="rating === 4">★★★★</p>
+  <p *ngIf="rating === 5">★★★★★</p>
 </div>

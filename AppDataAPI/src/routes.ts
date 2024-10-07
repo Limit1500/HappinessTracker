@@ -1,5 +1,6 @@
 import {
   addBreedRating,
+  removeBreedRating,
   searchBreedType,
   searchLikedBreeds,
   searchNewBreeds,
@@ -68,7 +69,7 @@ router.post("/addBreedRating", async (req, res) => {
       req.body.breedId,
       req.body.userId
     );
-    res.status(200);
+    res.status(200).json({ message: "Rating added" });
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
     return;
@@ -79,6 +80,16 @@ router.post("/searchNewBreeds", async (req, res) => {
   try {
     const response = await searchNewBreeds(req.body.userId);
     res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+    return;
+  }
+});
+
+router.post("/removeBreedRating", async (req, res) => {
+  try {
+    await removeBreedRating(req.body.breedId, req.body.userId);
+    res.status(200).json({ message: "Rating removed" });
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
     return;

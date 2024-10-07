@@ -31,9 +31,29 @@ export async function addBreedRating(
   userId: number
 ) {
   try {
+    const response = await pool.query(
+      "SELECT * FROM users_breeds WHERE user_id = $1 AND breed_id = $2",
+      [userId, breedId]
+    );
+
+    if (response.rowCount !== 0) {
+      throw new Error("ERROR: already rated");
+    }
+
     await pool.query(
       "INSERT INTO users_breeds (user_id, breed_id, rating) VALUES ($1, $2, $3)",
       [userId, breedId, breedRating]
+    );
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function removeBreedRating(breedId: number, userId: number) {
+  try {
+    await pool.query(
+      "DELETE FROM users_breeds WHERE breed_id = $1 AND user_id = $2;",
+      [breedId, userId]
     );
   } catch (error) {
     throw error;
