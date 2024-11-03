@@ -1,12 +1,12 @@
-import { response } from "express";
-import { error } from "console";
 import { pool } from "../config/database.js";
 import { userData } from "../types/usersTypes.js";
 
 const usersModel = {
   async getAllUsers() {
     try {
-      const response = await pool.query("SELECT * FROM users");
+      const response = await pool.query(
+        "SELECT users.username, users.email FROM users"
+      );
       return response.rows;
     } catch (error) {
       throw error;
@@ -15,9 +15,10 @@ const usersModel = {
 
   async getUserById(userId: number) {
     try {
-      const response = await pool.query("SELECT * FROM users WHERE id = $1", [
-        userId,
-      ]);
+      const response = await pool.query(
+        "SELECT users.username, users.email FROM users WHERE id = $1",
+        [userId]
+      );
       return response.rows;
     } catch (error) {
       throw error;

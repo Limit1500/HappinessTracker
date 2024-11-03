@@ -1,7 +1,6 @@
-import { response } from "express";
-import { error } from "console";
 import usersModel from "../models/usersModel.js";
 import { userData } from "../types/usersTypes.js";
+import userUtils from "../utils/userUtils.js";
 
 const usersService = {
   async getAllUsers() {
@@ -33,6 +32,7 @@ const usersService = {
 
   async postUser(userData: userData) {
     try {
+      userData.password = await userUtils.encryptPassword(userData.password);
       const response = await usersModel.postUser(userData);
       return response;
     } catch (error) {
