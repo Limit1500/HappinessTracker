@@ -7,3 +7,4 @@ usersRouter.get("/:userId", usersController.getUserById);
 usersRouter.get("/", usersController.getAllUsers);
 usersRouter.post("/", usersController.postUser);
 usersRouter.delete("/:userId", usersController.deleteUserById);
+usersRouter.patch("/:userId", usersController.patchUser);

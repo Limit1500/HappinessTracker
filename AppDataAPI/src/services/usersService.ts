@@ -9,7 +9,6 @@ const usersService = {
       const response = await usersModel.getAllUsers();
       return response;
     } catch (error) {
-      console.error(error);
       throw error;
     }
   },
@@ -19,7 +18,6 @@ const usersService = {
       const response = await usersModel.getUserById(userId);
       return response;
     } catch (error) {
-      console.error(error);
       throw error;
     }
   },
@@ -29,7 +27,6 @@ const usersService = {
       const response = await usersModel.deleteUserById(userId);
       return response;
     } catch (error) {
-      console.error(error);
       throw error;
     }
   },
@@ -39,7 +36,15 @@ const usersService = {
       const response = await usersModel.postUser(userData);
       return response;
     } catch (error) {
-      console.error(error);
+      throw error;
+    }
+  },
+
+  async patchUser(userData: userData) {
+    try {
+      const response = await usersModel.patchUser(userData);
+      return response;
+    } catch (error) {
       throw error;
     }
   },

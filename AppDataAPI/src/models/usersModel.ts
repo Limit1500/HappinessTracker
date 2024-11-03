@@ -1,3 +1,4 @@
+import { response } from "express";
 import { error } from "console";
 import { pool } from "../config/database.js";
 import { userData } from "../types/usersTypes.js";
@@ -8,7 +9,6 @@ const usersModel = {
       const response = await pool.query("SELECT * FROM users");
       return response.rows;
     } catch (error) {
-      console.error(error);
       throw error;
     }
   },
@@ -20,7 +20,6 @@ const usersModel = {
       ]);
       return response.rows;
     } catch (error) {
-      console.error(error);
       throw error;
     }
   },
@@ -32,7 +31,6 @@ const usersModel = {
       ]);
       return response;
     } catch (error) {
-      console.error(error);
       throw error;
     }
   },
@@ -53,7 +51,18 @@ const usersModel = {
       );
       return response;
     } catch (error) {
-      console.error(error);
+      throw error;
+    }
+  },
+
+  async patchUser(userData: userData) {
+    try {
+      const response = await pool.query(
+        "UPDATE users SET username = $1, password = $2 WHERE email = $3",
+        [userData.username, userData.password, userData.email]
+      );
+      return response;
+    } catch (error) {
       throw error;
     }
   },
