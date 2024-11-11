@@ -1,85 +1,67 @@
 import { error } from "console";
 import usersService from "../services/usersService.js";
 import { Request, Response } from "express";
-import { QueryResult } from "pg";
 
 const usersController = {
-  async getAllUsers(req: Request, res: Response) {
+  async logIn(req: Request, res: Response) {
     try {
-      const response = await usersService.getAllUsers();
-
-      if (!response || response.length === 0) {
-        return res.status(404).json({ message: "User not found" });
-      }
-
-      return res.status(200).json(response);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "User not found" });
-    }
-  },
-
-  async getUserById(req: Request, res: Response) {
-    try {
-      const response = await usersService.getUserById(
-        Number(req.params.userId)
+      const response = await usersService.logIn(
+        req.body.username,
+        req.body.password
       );
 
-      if (!response || response.length === 0) {
-        return res.status(404).json({ message: "User not found" });
+      if (!response || response.lenght !== 1) {
+        return res.status(400).json({ message: "Invalid input" });
       }
 
-      return res.status(200).json(response);
+      res.status(200).json({ message: "Login successful" });
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({ message: "Internal error" });
     }
   },
-
-  async deleteUserById(req: Request, res: Response) {
+  async signIn(req: Request, res: Response) {
     try {
-      const response = await usersService.deleteUserById(
-        Number(req.params.userId)
+      const response = await usersService.signIn(
+        req.body.username,
+        req.body.password,
+        req.body.email
       );
 
-      if (response.rowCount === 0) {
-        return res.status(404).json({ message: "User not found" });
+      if (!response || response.lenght !== 1) {
+        return res.status(400).json({ message: "Invalid input" });
       }
 
-      return res.status(200).json({ message: "User deleted" });
+      res.status(200).json({ message: "Signin successful" });
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Internal error" });
+      res.status(500).json({ message: "Internal error" });
     }
   },
-
-  async postUser(req: Request, res: Response) {
+  async deleteUser(req: Request, res: Response) {
     try {
-      const response = await usersService.postUser(req.body.userData);
+      const response = await usersService.deleteUser(req.body.id);
 
-      if (response.rowCount === 0) {
-        return res.status(404).json({ message: "Invalid data" });
+      if (!response || response.lenght !== 1) {
+        return res.status(400).json({ message: "Invalid input" });
       }
 
-      return res.status(200).json({ message: "User posted" });
+      res.status(200).json({ message: "User deleted" });
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Internal error" });
+      res.status(500).json({ message: "Internal error" });
     }
   },
-
-  async patchUser(req: Request, res: Response) {
+  async editUserData(req: Request, res: Response) {
     try {
-      const response = await usersService.patchUser(req.body.userData);
+      const response = await usersService.editUserData(
+        req.body.username,
+        req.body.password,
+        req.body.email
+      );
 
-      if (response.rowCount === 0) {
-        return res.status(404).json({ message: "Invalid data" });
+      if (!response || response.lenght !== 1) {
+        return res.status(400).json({ message: "Invalid Input" });
       }
-
-      return res.status(200).json({ message: "User patched" });
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Internal error" });
+      res.status(500).json({ message: "Internal error" });
     }
   },
 };

@@ -3,8 +3,7 @@ import { Router } from "express";
 
 export let usersRouter = Router();
 
-usersRouter.get("/:userId", usersController.getUserById);
-usersRouter.get("/", usersController.getAllUsers);
-usersRouter.post("/", usersController.postUser);
-usersRouter.delete("/:userId", usersController.deleteUserById);
-usersRouter.patch("/:userId", usersController.patchUser);
+usersRouter.get("/:userId", usersController.logIn);
+usersRouter.post("/", usersController.signIn);
+usersRouter.delete("/", usersController.deleteUser);
+usersRouter.patch("/", usersController.editUserData);
