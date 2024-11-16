@@ -6,7 +6,3 @@ export interface userData {
   password: string;
   email: string;
 }
-
-export interface AuthRequest extends Request {
-  user: string | JwtPayload | undefined;
-}

@@ -1,18 +1,17 @@
-import jwt from "jsonwebtoken";
-import { NextFunction, Response } from "express";
-import { AuthRequest } from "../types/usersTypes.js";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { NextFunction, Request, Response } from "express";
 
 const authMiddleware = {
-  checkToken(req: AuthRequest, res: Response, next: NextFunction) {
+  checkToken(req: Request, res: Response, next: NextFunction) {
     try {
       const token = req.cookies.token;
 
-      if (!token) {
+      if (!req.cookies.token) {
         throw new Error("Token missing");
       }
 
-      const tokenPayload = jwt.verify(token, "Secret Key");
-      req.user = tokenPayload;
+      const tokenPayload = jwt.verify(token, process.env.JWT_SECRET_KEY || "");
+      res.locals.payload = tokenPayload;
 
       next();
     } catch (error) {
