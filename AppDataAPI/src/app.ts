@@ -4,12 +4,14 @@ import { usersRouter } from "./routes/usersRouter.js";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import errorHandler from "./middlewares/errorMiddleware.js";
+import limiter from "./middlewares/rateLimiterMiddleware.js";
 
 export const app = express();
 
 dotenv.config();
 
 // app middleware
+app.use(limiter);
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
