@@ -1,12 +1,13 @@
 import { describe, it } from "node:test";
-import { app } from "../app.js";
+import { app } from "../../app.js";
 import request from "supertest";
-import testQueries from "./testQueries.js";
-import testPayloads from "./testPayloads.js";
-import userUtils from "../utils/userUtils.js";
+import testPayloads from "../helpers/testPayloads.js";
+import userUtils from "../../utils/userUtils.js";
+import { beforeEach } from "node:test";
+import testQueries from "../helpers/testQueries.js";
 
-beforeAll(async () => {
-  testQueries.deleteTestUsers();
+beforeEach(async () => {
+  await testQueries.deleteTestUsers();
 });
 
 describe("Users requests", () => {

@@ -1,5 +1,4 @@
-import { pool } from "../config/database.js";
-import userUtils from "../utils/userUtils.js";
+import { pool } from "../../config/database.js";
 
 const testQueries = {
   async deleteTestUsers() {

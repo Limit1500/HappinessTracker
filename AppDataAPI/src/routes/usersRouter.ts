@@ -6,17 +6,18 @@ import registerInputValidation from "../middlewares/registerInputValidationMiddl
 export let usersRouter = Router();
 usersRouter.post(
   "/logIn",
-  registerInputValidation.validateSignIn,
+  registerInputValidation.validateLogIn,
   usersController.logIn
 );
 usersRouter.post(
   "/signIn",
-  registerInputValidation.validateLogIn,
+  registerInputValidation.validateSignIn,
   usersController.signIn
 );
 usersRouter.post(
   "/editUserData",
   authMiddleware.checkToken,
+  registerInputValidation.validateSignIn,
   usersController.editUserData
 );
 
