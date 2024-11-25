@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { body, validationResult } from "express-validator";
+import { CustomError } from "../types/errorTypes.js";
 
 const registerInputValidation = {
   validateUsername() {
@@ -8,7 +9,15 @@ const registerInputValidation = {
         .isAlphanumeric()
         .withMessage("Username must contain only letters and numbers.")
         .isLength({ min: 3, max: 20 })
-        .withMessage("Username must be between 3 and 20 characters long"),
+        .withMessage("Username must be between 3 and 20 characters long")
+        .custom(async (value) => {
+          if (
+            value === process.env.TEST_USERNAME_1 ||
+            value === process.env.TEST_USERNAME_2
+          ) {
+            throw new CustomError("Username unavailable");
+          }
+        }),
     ];
   },
 
@@ -22,7 +31,15 @@ const registerInputValidation = {
         .matches(/[A-Z]/)
         .withMessage("Password must contain at least one uppercase letter.")
         .matches(/[\W_]/)
-        .withMessage("Password must contain at least one special character."),
+        .withMessage("Password must contain at least one special character.")
+        .custom(async (value) => {
+          if (
+            value === process.env.TEST_PASSWORD_1 ||
+            value === process.env.TEST_PASSWORD_2
+          ) {
+            throw new CustomError("Password unavailable");
+          }
+        }),
     ];
   },
 
@@ -30,7 +47,15 @@ const registerInputValidation = {
     return [
       body("email")
         .isEmail()
-        .withMessage("Please provide a valid email address."),
+        .withMessage("Please provide a valid email address.")
+        .custom(async (value) => {
+          if (
+            value === process.env.TEST_EMAIL_1 ||
+            value === process.env.TEST_EMAIL_2
+          ) {
+            throw new CustomError("Email unavailable", 400);
+          }
+        }),
     ];
   },
 
