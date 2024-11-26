@@ -1,4 +1,5 @@
 import { describe, it } from "node:test";
+import { expect } from "chai";
 import { app } from "../../app.js";
 import request from "supertest";
 import testPayloads from "../helpers/testPayloads.js";
@@ -17,7 +18,7 @@ describe("Users requests", () => {
         .post("/signIn")
         .send(testPayloads.signInValidPayloadNo1);
 
-      expect(result.statusCode).toBe(200);
+      expect(result.statusCode).equal(200);
     });
     it("Should return a 400 status code, usename or email already used", async () => {
       testQueries.createTestUserNo1();
@@ -26,14 +27,14 @@ describe("Users requests", () => {
         .post("/signIn")
         .send(testPayloads.signInValidPayloadNo1);
 
-      expect(result.statusCode).toBe(400);
+      expect(result.statusCode).equal(400);
     });
     it("Should return a 400 status code, invalid data", async () => {
       const result = await request(app)
         .post("/signIn")
         .send(testPayloads.InvalidaPayload);
 
-      expect(result.statusCode).toBe(400);
+      expect(result.statusCode).equal(400);
     });
   });
 
@@ -45,7 +46,7 @@ describe("Users requests", () => {
         .post("/logIn")
         .send(testPayloads.logInValidPayloadNo1);
 
-      expect(result.statusCode).toBe(200);
+      expect(result.statusCode).equal(200);
     });
     it("Should return a 400 status code, invalid data", async () => {
       testQueries.createTestUserNo1();
@@ -54,14 +55,14 @@ describe("Users requests", () => {
         .post("/logIn")
         .send(testPayloads.InvalidaPayload);
 
-      expect(result.statusCode).toBe(400);
+      expect(result.statusCode).equal(400);
     });
     it("Should return a 400 status code, user not found", async () => {
       const result = await request(app)
         .post("/logIn")
         .send(testPayloads.logInValidPayloadNo1);
 
-      expect(result.statusCode).toBe(400);
+      expect(result.statusCode).equal(400);
     });
   });
 
@@ -73,14 +74,14 @@ describe("Users requests", () => {
         .get("/deleteUser")
         .set("Cookie", userUtils.createToken(Number(process.env.TEST_ID)));
 
-      expect(result.statusCode).toBe(200);
+      expect(result.statusCode).equal(200);
     });
     it("Should return a 400 status code, token missing", async () => {
       testQueries.createTestUserNo1();
 
       const result = await request(app).get("/deleteUser");
 
-      expect(result.statusCode).toBe(400);
+      expect(result.statusCode).equal(400);
     });
   });
 
@@ -93,7 +94,7 @@ describe("Users requests", () => {
         .send(testPayloads.signInValidPayloadNo2)
         .set("Cookie", userUtils.createToken(Number(process.env.TEST_ID)));
 
-      expect(result.statusCode).toBe(200);
+      expect(result.statusCode).equal(200);
     });
     it("Should return a 400 status code, token missing", async () => {
       testQueries.createTestUserNo1();
@@ -102,7 +103,7 @@ describe("Users requests", () => {
         .post("/editUserData")
         .send(testPayloads.signInValidPayloadNo2);
 
-      expect(result.statusCode).toBe(400);
+      expect(result.statusCode).equal(400);
     });
     it("Should return a 400 status code, invalid credentials", async () => {
       const result = await request(app)
@@ -110,7 +111,7 @@ describe("Users requests", () => {
         .send(testPayloads.InvalidaPayload)
         .set("Cookie", userUtils.createToken(Number(process.env.TEST_ID)));
 
-      expect(result.statusCode).toBe(400);
+      expect(result.statusCode).equal(400);
     });
   });
 });
