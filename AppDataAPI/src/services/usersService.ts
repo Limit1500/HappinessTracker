@@ -36,20 +36,13 @@ const usersService = {
       throw new CustomError("Invalid credentials. Email already taken", 400);
     }
 
-    response = await usersModel.postUser(username, password, email);
-    if (response.rowCount !== 1) {
-      throw new CustomError("No changes were made", 400);
-    }
+    await usersModel.postUser(username, password, email);
 
     return userUtils.createToken(response.rows[0].id);
   },
 
   async deleteUser(id: number) {
     const response = await usersModel.deleteUserById(id);
-
-    if (response.rowCount !== 0) {
-      throw new CustomError("No changes were made", 400);
-    }
   },
 
   async editUserData(
@@ -69,9 +62,6 @@ const usersService = {
     }
 
     response = await usersModel.editUserData(username, password, email, id);
-    if (response.rowCount !== 1) {
-      throw new CustomError("No changes were made", 400);
-    }
   },
 };
 

@@ -3,7 +3,7 @@ import { Router } from "express";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import registerInputValidation from "../middlewares/registerInputValidationMiddleware.js";
 
-export let usersRouter = Router();
+export const usersRouter = Router();
 usersRouter.post(
   "/logIn",
   registerInputValidation.validateLogIn,

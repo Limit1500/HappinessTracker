@@ -18,7 +18,7 @@ export class UserService {
       });
 
       if (!response.ok) {
-        let errorResponse = await response.json();
+        const errorResponse = await response.json();
         throw new Error(errorResponse.message);
       }
 

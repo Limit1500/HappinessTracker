@@ -1,5 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
+import { CustomError } from "../types/errorTypes.js";
 
 const authMiddleware = {
   checkToken(req: Request, res: Response, next: NextFunction) {
@@ -15,7 +16,9 @@ const authMiddleware = {
 
       next();
     } catch (error) {
-      res.status(400).json({ message: (error as Error).message });
+      next(
+        new CustomError("Authentication failed. Invalid or expired token.", 401)
+      );
     }
   },
 };

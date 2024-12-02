@@ -8,6 +8,7 @@ const errorHandler = {
     if (err instanceof CustomError) {
       res.status(err.statusCode).json({ message: err.message });
     } else {
+      console.error(err.message);
       res.status(500).json({ message: "Unexpected error" });
     }
   },
