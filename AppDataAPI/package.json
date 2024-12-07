@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "start": "rimraf dist && tsc && node dist/server.js",
-    "test": "rimraf dist && tsc && mocha dist/tests/endpointTests/**/*.js",
+    "test": "cls && rimraf dist && tsc && mocha dist/tests/endpointTests/**/*.js",
     "watch": "tsc --watch",
     "dev": "nodemon dist/server.js"
   },
