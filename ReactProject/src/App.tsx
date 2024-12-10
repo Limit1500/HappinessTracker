@@ -1,8 +1,13 @@
 function App() {
+  const age = 15;
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <div className="flex flex-">
+      <h3 className=" text-blue-800">Hello world! {age + age}</h3>
+      <h3 className=" text-blue-800">Hello world! {age + age}</h3>
+      <h3 className=" text-blue-800">Hello world! {age + age}</h3>
+      <h3 className=" text-blue-800">Hello world! {age + age}</h3>
+      <h3 className=" text-blue-800">Hello world! {age + age}</h3>
+    </div>
   );
 }
 
