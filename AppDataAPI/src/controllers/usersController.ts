@@ -1,4 +1,3 @@
-import { error } from "console";
 import usersService from "../services/usersService.js";
 import { NextFunction, Request, Response } from "express";
 

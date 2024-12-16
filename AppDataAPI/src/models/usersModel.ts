@@ -1,5 +1,6 @@
 import { pool } from "../config/database.js";
 import { userData } from "../types/usersTypes.js";
+import userUtils from "../utils/userUtils.js";
 
 const usersModel = {
   async getUserByUsername(username: string) {

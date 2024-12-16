@@ -8,7 +8,6 @@ import { CustomError } from "../types/errorTypes.js";
 const usersService = {
   async logIn(username: string, password: string) {
     const storedUser = await usersModel.getUserByUsername(username);
-
     if (
       !storedUser ||
       storedUser.rows.length !== 1 ||
@@ -36,7 +35,14 @@ const usersService = {
       throw new CustomError("Invalid credentials. Email already taken", 400);
     }
 
-    await usersModel.postUser(username, password, email);
+    response = await usersModel.postUser(
+      username,
+      await userUtils.encryptPassword(password),
+      email
+    );
+    if (response.rowCount !== 1) {
+      throw new CustomError("No changes were made", 400);
+    }
 
     return userUtils.createToken(response.rows[0].id);
   },
@@ -61,7 +67,12 @@ const usersService = {
       throw new CustomError("Invalid credentials. Email already taken", 400);
     }
 
-    response = await usersModel.editUserData(username, password, email, id);
+    response = await usersModel.editUserData(
+      username,
+      await userUtils.encryptPassword(password),
+      email,
+      id
+    );
   },
 };
 

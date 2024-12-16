@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 const userUtils = {
   async encryptPassword(rawPassword: string) {
-    const salt = 10;
+    const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(rawPassword, salt);
   },
 

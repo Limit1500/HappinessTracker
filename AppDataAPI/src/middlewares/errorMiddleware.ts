@@ -3,9 +3,8 @@ import { CustomError } from "../types/errorTypes.js";
 
 const errorHandler = {
   handleError(err: any, req: Request, res: Response, next: NextFunction): void {
-    console.error(err);
-
     if (err instanceof CustomError) {
+      /* console.error(err); */
       res.status(err.statusCode).json({ message: err.message });
     } else {
       console.error(err.message);
